@@ -9,11 +9,15 @@ const mongoose = require('mongoose')
 const Email = require("./models/EmailSchema")
 require('dotenv').config()
 
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 app.use(cors({
     origin: ['http://localhost:3000', 'https://banhmi220.netlify.app/', 'https://banhmi220.com'],
     credentials: true
 }))
-app.use(express.json())
+if (process.env.NODE_ENV === 'production') {
+    app.set('trust proxy', 1) // trust first proxy
+}
 
 mongoose.connect(
     process.env.MONGODB_URI,
