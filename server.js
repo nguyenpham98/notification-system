@@ -10,7 +10,8 @@ const Email = require("./models/EmailSchema")
 require('dotenv').config()
 
 app.use(cors({
-    origin: 'http://localhost:3000'
+    origin: ['http://localhost:3000', 'https://banhmi220.netlify.app/', 'https://banhmi220.com'],
+    credentials: true
 }))
 app.use(express.json())
 
